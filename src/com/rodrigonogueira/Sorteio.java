@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 public class Sorteio {
     private int numeroDigitado, numeroGerado, contador;
     Random gerador = new Random();
-    ArrayList lista = new ArrayList();
+    ArrayList<Integer> lista = new ArrayList<Integer>();
     Scanner scanner = new Scanner(System.in);
 
     //String para mudar a cor dos textos
@@ -29,33 +29,50 @@ public class Sorteio {
             System.out.print(".");
             TimeUnit.SECONDS.sleep(1);
         }
-        System.out.println("\nPronto! Já estou com o número aqui... Tenta adivinher qual é :) ");
+        System.out.println("\nPronto! Já estou com o número aqui... Tenta adivinhar qual é :) ");
         TimeUnit.SECONDS.sleep(3);
-        clearConsole();
+
 
     }
 
     public boolean estrutura() throws InterruptedException {
 
-        System.out.print(ANSI_PURPLE + "Tente um número:");
+        System.out.print(ANSI_PURPLE + "\nTente um número:");
         setNumeroDigitado(scanner.nextInt());
 
         if (getNumeroDigitado() == getNumeroGerado()) {
 
-            System.out.println(ANSI_GREEN + "parabéns! Você acertou o número" + ANSI_RESET);
-            System.out.println("Deseja Recomeçar o Jogo?\n1 - Sim\n2- Não ");
+            System.out.println(ANSI_GREEN + "parabéns! Você acertou o número" );
+            System.out.println("Foram:"+contador+" Tentativas até você acerta.");
+            System.out.println("Deseja Recomeçar o Jogo?\n1 - Sim\n2- Não "+ ANSI_RESET);
             int resposta = scanner.nextInt();
             if ((resposta == 1)) {
+                lista.clear();
                 menuJogo();
             } else {
+
+                System.out.println(ANSI_GREEN +"Obrigado por jogar! Até a próxima");
                 return false;
             }
 
         } else {
             if (getNumeroGerado() > getNumeroDigitado()) {
                 System.out.println(ANSI_RED + "Número Errado! Não desista. O número gerado é SUPERIOR que:" + getNumeroDigitado() + ANSI_RESET);
+                contador++;
+                lista.add(getNumeroDigitado());
+                System.out.print("Números já digitados:");
+                for (Integer list : lista){
+                    System.out.print(" "+list+" ");
+                }
             } else {
                 System.out.println(ANSI_RED + "Número Errado! Não desista. O número gerado é INFERIOR que:" + getNumeroDigitado() + ANSI_RESET);
+                contador++;
+                lista.add(getNumeroDigitado());
+                System.out.print("Números já digitados:");
+                for (Integer list : lista){
+                    System.out.print(" "+list+" ");
+                }
+
             }
 
 
@@ -80,22 +97,4 @@ public class Sorteio {
         return numeroGerado;
     }
 
-
-    //Limpar tela improvisado!
-    public final static void clearConsole(){
-
-        try{
-            final String os = System.getProperty("os.name");
-
-            if (os.contains("Windows")){
-                Runtime.getRuntime().exec("cls");
-
-            }else{
-                Runtime.getRuntime().exec("clear");
-            }
-        }
-        catch (final Exception e){
-            //  Tratar Exceptions
-        }
-    }
 }
