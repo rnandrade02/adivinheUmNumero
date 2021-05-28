@@ -1,5 +1,4 @@
 package com.rodrigonogueira;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -43,7 +42,7 @@ public class Sorteio {
         if (getNumeroDigitado() == getNumeroGerado()) {
 
             System.out.println(ANSI_GREEN + "parabéns! Você acertou o número" );
-            System.out.println("Foram:"+contador+" Tentativas até você acerta.");
+            System.out.println("Foram:"+contador+" Tentativas até você acertar.");
             System.out.println("Deseja Recomeçar o Jogo?\n1 - Sim\n2- Não "+ ANSI_RESET);
             int resposta = scanner.nextInt();
             if ((resposta == 1)) {
