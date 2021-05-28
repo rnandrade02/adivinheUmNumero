@@ -1,11 +1,12 @@
 package com.rodrigonogueira;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 
 public class Main {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
 
         Scanner scanner = new Scanner(System.in);
         Sorteio sorteio = new Sorteio();
@@ -16,9 +17,8 @@ public class Main {
         String ANSI_PURPLE = "\u001B[35m";
         boolean iniciarjogo = true;
         sorteio.menuJogo();
-        sorteio.setNumeroDigitado(scanner.nextInt());
         while (iniciarjogo){
-
+        iniciarjogo = sorteio.estrutura();
         }
 
     }
